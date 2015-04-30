@@ -27,7 +27,8 @@ RUN sed -i 's#memory_limit = 128M#memory_limit = 512M#g' /etc/php.ini && \
 EXPOSE 80
 ENV GITHUB_APIKEY **None**
 # Start script
+COPY local.php /root/local.php
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /*.sh
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
+CMD ["/bin/bash"]
