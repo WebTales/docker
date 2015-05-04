@@ -1,0 +1,18 @@
+{
+  "name": "rubedo/extensions",
+  "require": {
+    "webtales/Client": "dev-master"
+  },
+  "require-dev": { },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/WebTales/rubedo-client.git"
+    }
+  ],
+  "minimum-stability": "dev",
+  "config": {
+    "process-timeout": 600,
+    "vendor-dir": "extensions"
+  }
+}

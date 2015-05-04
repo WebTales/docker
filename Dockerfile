@@ -28,6 +28,7 @@ EXPOSE 80
 ENV GITHUB_APIKEY **None**
 # Start script
 COPY local.php /root/local.php
+COPY composer.extensions.json /root/composer.extensions.json
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /*.sh
 ENTRYPOINT ["/entrypoint.sh"]
