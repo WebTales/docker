@@ -36,4 +36,4 @@ COPY composer.extensions.json /root/composer.extensions.json
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /*.sh
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
+CMD ["/usr/bin/tail", "-f", "/var/log/httpd/error_log"]
