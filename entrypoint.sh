@@ -1,5 +1,14 @@
 #!/bin/bash
 set -e
+if [ ! -z "${MONGO_PORT_27017_TCP_ADDR}" ] && [ ! -z "${MONGO_PORT_27017_TCP_PORT}" ]
+then
+    while ! exec 6<>/dev/tcp/${MONGO_PORT_27017_TCP_ADDR}/${MONGO_PORT_27017_TCP_PORT}; do
+        echo "$(date) - still trying to connect to ${LINKED_CONTAINER_IP}/${LINKED_CONTAINER_PORT}"
+        sleep 1
+    done
+    exec 6>&-
+    exec 6<&-
+fi
 if [ ! -d /var/www/html/rubedo/ ];
 then
     if [ ! -d /var/rubedo_sources ] && [ "${GITHUB_APIKEY}" != "**None**" ]; then
@@ -12,7 +21,7 @@ then
         cd
     else
         echo "coping Rubedo"
-        cp -Rv /var/rubedo_sources /var/www/html/rubedo
+        cp -R /var/rubedo_sources /var/www/html/rubedo
     fi
     chmod -R 777 /var/www/html/rubedo/cache/
     chmod -R 777 /var/www/html/rubedo/public/captcha
