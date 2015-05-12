@@ -3,7 +3,7 @@ set -e
 if [ ! -z "${MONGO_PORT_27017_TCP_ADDR}" ] && [ ! -z "${MONGO_PORT_27017_TCP_PORT}" ]
 then
     while ! exec 6<>/dev/tcp/${MONGO_PORT_27017_TCP_ADDR}/${MONGO_PORT_27017_TCP_PORT}; do
-        echo "$(date) - still trying to connect to ${LINKED_CONTAINER_IP}/${LINKED_CONTAINER_PORT}"
+        echo "$(date) - still trying to connect to ${MONGO_PORT_27017_TCP_ADDR}/${MONGO_PORT_27017_TCP_PORT}"
         sleep 1
     done
     exec 6>&-
