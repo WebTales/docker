@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+if [ -d /var/www/html/rubedo ]; then
+    rm -rf /var/www/html/rubedo
+fi
+
 if [ "${URL}" = "**None**" ] && [ "${GITHUB_APIKEY}" = "**None**" ]; then
     mkdir -p /var/www/html/rubedo
     wget -O /var/www/html/rubedo.tar.gz https://github.com/WebTales/rubedo/releases/download/3.1.0/rubedo-3.1.tar.gz
