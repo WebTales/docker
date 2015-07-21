@@ -59,7 +59,7 @@ if [ "${DEPLOYED}" = "false" ]; then
             fi
         fi
         curl -sS https://getcomposer.org/installer | php -- --install-dir=/var/www/html/rubedo
-        python /generate-composer-extension.py >> /var/www/html/rubedo/composer.extensions.json
+        python /generate-composer-extension.py > /var/www/html/rubedo/composer.extensions.json
         cd /var/www/html/rubedo/
         php composer.phar config -g github-oauth.github.com "$GITHUB_APIKEY"
         ./rubedo.sh
